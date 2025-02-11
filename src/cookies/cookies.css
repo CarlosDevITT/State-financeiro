@@ -1,0 +1,60 @@
+.cookies-msg {
+    width: 90%; /* Ajuste para 90% para melhor responsividade */
+    max-width: 600px; /* Limita a largura máxima */
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco com leve transparência */
+    position: fixed;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 15px;
+    display: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para um efeito de elevação */
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+}
+
+.cookies-msg.mostrar {
+    display: flex; /* Muda para flex para melhor alinhamento */
+}
+
+.cookies-msg .cookies-txt {
+    display: flex;
+    align-items: center;
+    text-align: justify;
+    padding: 20px;
+    color: #333; /* Cor do texto mais escura para melhor legibilidade */
+    font-size: 16px; /* Tamanho de fonte ajustado */
+}
+
+.cookies-msg .cookies-btn {
+    margin-left: auto; /* Alinha o botão à direita */
+    padding: 10px; /* Adiciona um pouco de espaçamento */
+}
+
+.cookies-msg .cookies-btn button {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px; /* Tamanho de fonte ajustado */
+    padding: 10px 20px; /* Ajusta o padding do botão */
+    border: none; /* Remove borda padrão */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s; /* Transição suave para escala e cor */
+}
+
+.cookies-msg .cookies-btn button:hover {
+    transform: scale(1.05); /* Aumenta levemente o botão ao passar o mouse */
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 480px) {
+    .cookies-msg .cookies-txt {
+        font-size: 14px; /* Ajusta o tamanho da fonte em telas pequenas */
+    }
+
+    .cookies-msg .cookies-btn button {
+        font-size: 14px; /* Ajusta o tamanho da fonte do botão */
+        padding: 8px 16px; /* Ajusta o padding do botão */
+    }
+}

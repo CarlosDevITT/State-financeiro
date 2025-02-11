@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="app, landing, corporate, Creative, Html Template, Template">
+   
+     <!--=============== BOXICONS ===============-->
+     <link
+     href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+     rel="stylesheet"
+   />
+
+    <link rel="shortcut icon" href="assets/State.jpg" type="image/x-icon">
+    <link rel="manifest" href="manifest.json">
+    <link defer rel="stylesheet" href="/src/cookies/cookies.css">
+    <title>State finance</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" 
+    rel="stylesheet">
+
+    
+</head>
+<body>
+   
+   <header>
+        <a href="#">
+            <img src="./assets/Logo.png" alt="Logo dev finance"> 
+        </a>
+        <h1 id="logo">  
+        Financeiro
+        </h1>
+       
+    </header>
+
+    <main class="container">
+
+        <section id="balance"> 
+            <h2 class="sr-only">Balanço</h2>
+
+            <div class="card">
+                <h3>
+                   <span>Entradas</span>
+                   <img src="./assets/income.svg" alt="entradas">
+                </h3>
+                    <p id="incomeDisplay">R$ 0,00</p>
+            </div>
+
+            <div class="card">
+                <h3>
+                   <span>Saídas</span>
+                   <img src="./assets/expense.svg" alt="saidas">
+                </h3>
+                    <p id="expenseDisplay">R$ 0,00</p>
+            </div>
+
+            <div class="card total">
+                <h3>
+                   <span>Total</span>
+                   <img src="./assets/total.svg" alt="total">
+                </h3>
+                    <p id="totalDisplay">R$ 0,00</p>
+            </div>                                  
+        </section>
+
+        <a href="#" 
+        onclick="Modal.open()"
+        class="button new">
+            + Nova Transação
+        </a>
+
+        <div id="busca">
+            <input type="text" placeholder="Buscar..." class="maxWidth input" id="myInput" onkeyup="tableSearch()" name="search" />
+        </div>
+
+        <!-- <table class="top">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                    <th></th>
+                    
+                </tr>
+            </thead>
+        </table> -->
+        
+        
+        <section id="transaction">
+            <h2 class="sr-only">Transações</h2>
+           
+            <table class="table" id="data-table" data-filter-control="true" data-show-search-clear-button="true">
+                <thead class="mobile">
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                   
+                </tbody>
+            </table>
+        
+        </section>
+    </main>
+
+    <script type="application/javascript">
+
+    //     const a = [ 
+    //         {letra: 'b', num: 3}, 
+    //         {letra: 'c', num: 2},
+    //         {letra: 'd', num: 1},
+    //     ]
+    //    const sorted = a.sort((b,c)=> {
+    //        return b.num - c.num
+    //    })
+    //    console.log(sorted) 
+       
+     function tableSearch(){
+                let input, filter, table, tr, td, i, txtValue;
+
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("data-table");
+                tr = table.getElementsByTagName("tr");
+
+                for(let i = 0; i< tr.length; i++){
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if(td) {
+                        txtValue = td.textContent || td.innerText;
+                        if(txtValue.toUpperCase().indexOf(filter) > -1){
+                            tr[i].style.display = '';
+                        }else{
+                            tr[i].style.display = 'none';
+                        }
+                    }
+                }
+
+                //console.log()
+            }
+            //  table = document.getElementById("data-table");
+            // table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"))
+            // sortTableByColumn(document.querySelector("table"), 1, true);
+
+           
+    </script>
+
+    <div class="modal-overlay">
+        <div class="modal">
+            
+            <div id="form">
+                <h2>Nova Transação</h2>
+                <form action="" onsubmit="Form.submit(event)">
+
+                    <div class="input-group">
+                        <label 
+                        class="sr-only"
+                        for="description">Descrição</label>
+                        <input 
+                        type="text" 
+                        id="description" 
+                        name="description"
+                        placeholder="Descrição"
+                        />
+                    </div>
+
+                    <div class="input-group">
+                        <label 
+                        class="sr-only"
+                        for="amount">Valor</label>
+                        <input 
+                        type="number" 
+                        step="0.01"
+                        id="amount" 
+                        name="amount"
+                        placeholder="0,00"
+                        />
+                        <small class="help">
+                            Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais
+                        </small>
+                    </div>
+
+                    <div class="input-group">
+                        <label 
+                        class="sr-only"
+                        for="date">Data</label>
+                        <input 
+                        type="date" 
+                        id="date" 
+                        name="date"
+                        />
+                    </div>
+                    
+                    <div class="input-group actions">
+                        <a 
+                        onclick="Modal.close()"
+                        href="#"
+                        class="button cancel">Cancelar</a>
+                        <button>Salvar</button>
+                    </div>
+
+                </form>
+            </div>
+
+            
+            
+        </div>
+    </div>
+
+    <div class="cookies-msg" id="cookies-msg">
+        <div class="cookies-txt">
+            <p>Seja bem-vindo, Aproveite Ao maximo para utilizar nosso site. você está de acordo com a utilização dos cookies para te proporcionar uma melhor experiência.</p>
+
+            <div class="cookies-btn">
+                <button onclick="aceito()">Aceito</button>
+            </div>
+        </div>
+    </div><!--cookies-msg-->
+
+    <footer> 
+        <div class="home__footer">
+            <span>(55+) 92 98513-0951</span>
+            <span>|</span>
+            <span>stateSoft@company.com</span>
+        </div>
+
+        <div class="footer__socials">
+            <ul>             
+                <li>               
+                    <a href="https://state-software.netlify.app/"><i class="ri-facebook-fill"></i></a>                
+            </li>              
+                <li>               
+                    <a href="https://state-software.netlify.app/"><i class="ri-google-fill"></i></a>               
+                </li>              
+                <li>               
+                    <a href="https://www.instagram.com/statesoft_/?hl=pt-br"><i class="ri-instagram-line"></i></a>              
+                </li>              
+                <li>            
+                <a href="https://www.youtube.com/@carlos_domingos.0"><i class="ri-youtube-line"></i></a>                
+                </li>             
+            </ul>      
+        </div>
+    </footer>  
+
+
+
+    <script src="./scripts.js">
+
+    </script>
+ <script src="src/cookies/cookies.js"></script>
+
+</body>
+</html>
